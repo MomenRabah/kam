@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Create Unforgettable",
+    "titleHighlight": "Experiences",
+    "subtitle": "Transform your vision into reality with our premium event planning and management services",
+    "cta": "Book Now",
+    "ctaSecondary": "Learn More"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive event solutions tailored to your needs",
+    "corporate": {
+      "title": "Corporate Events",
+      "description": "Professional conferences, seminars, and corporate gatherings"
+    },
+    "weddings": {
+      "title": "Weddings & Celebrations",
+      "description": "Make your special day truly memorable with our expert planning"
+    },
+    "exhibitions": {
+      "title": "Exhibitions & Trade Shows",
+      "description": "Stand out with professionally managed exhibitions and booths"
+    },
+    "entertainment": {
+      "title": "Entertainment Events",
+      "description": "Concerts, festivals, and entertainment experiences"
+    }
+  },
+  "stats": {
+    "events": "Events Completed",
+    "clients": "Happy Clients",
+    "years": "Years Experience",
+    "team": "Team Members"
+  },
+  "clients": {
+    "title": "Trusted By Leading Brands",
+    "subtitle": "We've partnered with industry leaders to deliver exceptional events"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Real experiences from our satisfied clients"
+  },
+  "cta": {
+    "title": "Ready to Create Your Next Event?",
+    "subtitle": "Let's bring your vision to life with our expert team",
+    "button": "Get Started Today"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind? We'd love to hear from you",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "send": "Send Message",
+    "info": {
+      "address": "123 Event Street, Dubai, UAE",
+      "phone": "+971 50 123 4567",
+      "email": "info@eventscompany.com"
+    }
+  },
+  "footer": {
+    "description": "Creating memorable experiences that last a lifetime",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved"
+  }
+}
