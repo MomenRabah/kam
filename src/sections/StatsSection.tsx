@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 interface CounterProps {
@@ -11,11 +11,14 @@ const Counter = ({ value, duration = 2 }: CounterProps) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
   const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
-    const controls = animate(count, value, { duration });
-    return controls.stop;
-  }, [count, value, duration]);
+    if (isInView) {
+      const controls = animate(count, value, { duration });
+      return controls.stop;
+    }
+  }, [count, value, duration, isInView]);
 
   useEffect(() => {
     const unsubscribe = rounded.on('change', (latest) => {
@@ -33,16 +36,14 @@ const StatsSection = () => {
   const { t } = useTranslation();
 
   const stats = [
-    { value: 500, label: t('stats.events'), suffix: '+' },
-    { value: 1000, label: t('stats.clients'), suffix: '+' },
-    { value: 15, label: t('stats.years'), suffix: '+' },
-    { value: 50, label: t('stats.team'), suffix: '+' },
+    { value: 20, label: t('stats.years.label'), suffix: '+' },
+    { value: 365, label: t('stats.projects.label'), suffix: '+' },
   ];
 
   return (
-    <section className="py-20 bg-secondary text-white">
+    <section className="py-12 bg-gray-50 text-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -52,11 +53,11 @@ const StatsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
-                <Counter value={stat.value} />
+              <div className="text-6xl md:text-7xl font-bold text-primary mb-4">
+                <Counter  value={stat.value} />
                 {stat.suffix}
               </div>
-              <p className="text-lg text-gray-300">{stat.label}</p>
+              <p className="text-xl md:text-2xl font-semibold text-secondary uppercase tracking-wide">{stat.label}</p>
             </motion.div>
           ))}
         </div>

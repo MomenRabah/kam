@@ -1,38 +1,70 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
-import { Target, Eye, Award, Users } from 'lucide-react';
+import { Eye, Target, Award, Lightbulb, Handshake, Star, UserCheck } from 'lucide-react';
+import companyImage from '../assets/images/main.jpg';
 
 const About = () => {
   const { t } = useTranslation();
 
-  const values = [
-    {
-      icon: Target,
-      title: 'Our Mission',
-      description: 'To create unforgettable experiences that exceed expectations and bring visions to life.',
-    },
+  const visionMission = [
     {
       icon: Eye,
-      title: 'Our Vision',
-      description: 'To be the leading events company recognized for innovation, quality, and excellence.',
+      titleKey: 'about.vision.title',
+      descKey: 'about.vision.description',
     },
+    {
+      icon: Target,
+      titleKey: 'about.mission.title',
+      descKey: 'about.mission.description',
+    },
+  ];
+
+  const values = [
     {
       icon: Award,
-      title: 'Our Values',
-      description: 'Excellence, integrity, creativity, and commitment to client satisfaction.',
+      titleKey: 'about.values.commitment.title',
+      descKey: 'about.values.commitment.description',
     },
     {
-      icon: Users,
-      title: 'Our Team',
-      description: 'A passionate group of professionals dedicated to making every event extraordinary.',
+      icon: Lightbulb,
+      titleKey: 'about.values.innovation.title',
+      descKey: 'about.values.innovation.description',
+    },
+    {
+      icon: Handshake,
+      titleKey: 'about.values.trust.title',
+      descKey: 'about.values.trust.description',
+    },
+    {
+      icon: Star,
+      titleKey: 'about.values.quality.title',
+      descKey: 'about.values.quality.description',
+    },
+    {
+      icon: UserCheck,
+      titleKey: 'about.values.customerFirst.title',
+      descKey: 'about.values.customerFirst.description',
     },
   ];
 
   return (
-    <div className="pt-20">
-      <section className="py-20 bg-linear-to-br from-secondary to-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div>
+      <section className="relative py-20 bg-linear-to-r bg-background overflow-hidden text-white">
+      {/* Soft abstract light glow */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        {/* Light blob 1 */}
+        <div className="absolute w-[100px] h-[100px] bg-primary/90 blur-lg rounded-full -translate-x-8 -translate-y-1 mix-blend-screen opacity-70" />
+
+        {/* Light blob 2 */}
+        <div className="absolute w-[120px] h-[120px] bg-accent/70 blur-2xl rounded-full translate-x-10 -translate-y-4 mix-blend-screen opacity-70" />
+        {/* Subtle center glow */}
+        <div className="absolute w-[150px] h-[150px] bg-primary/60 blur-xl rounded-full translate-x-2 translate-y-4 mix-blend-screen opacity-80" />
+      </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -47,30 +79,32 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl max-w-3xl mx-auto"
           >
-            Creating memorable experiences since 2009
+            {t('about.heroSubtitle')}
           </motion.p>
         </div>
       </section>
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-justify items-center mb-20">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-secondary mb-6">Who We Are</h2>
-              <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-                EventsCo is a premier event planning and management company with over 15 years of experience 
-                in creating exceptional experiences. We specialize in corporate events, weddings, exhibitions, 
-                and entertainment events.
+              <h2 className="text-4xl font-bold text-secondary mb-6">{t('about.whoWeAre')}</h2>
+              <p className="text-lg text-gray-600 mb-4 leading-relaxed">
+                {t('about.paragraph1')}
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Our team of dedicated professionals works tirelessly to ensure every detail is perfect, 
-                from concept to execution. We pride ourselves on our creativity, attention to detail, 
-                and commitment to exceeding client expectations.
+              <p className="text-lg text-gray-600 mb-4 leading-relaxed">
+                {t('about.paragraph2')}
+              </p>
+              <p className="text-lg text-gray-600 mb-4 leading-relaxed">
+                {t('about.paragraph3')}
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {t('about.paragraph4')}
               </p>
             </motion.div>
             <motion.div
@@ -78,34 +112,87 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center"
+              className="rounded-2xl overflow-hidden h-96 flex items-center justify-center bg-gray-100"
             >
-              <span className="text-gray-400 text-xl">Company Image</span>
+              <img 
+                src={companyImage} 
+                alt="KAM Company" 
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="text-center h-full">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <value.icon className="text-primary" size={32} />
+          {/* Vision & Mission */}
+          <div className="mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold text-center text-secondary mb-12"
+            >
+              {t('about.vision.title')} & {t('about.mission.title')}
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {visionMission.map((item, index) => (
+                <motion.div
+                  key={item.titleKey}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="text-center h-full w-full">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                      <item.icon className="text-primary" size={32} />
+                    </div>
+                    <h3 className="text-xl font-semibold text-secondary mb-3">
+                      {t(item.titleKey)}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t(item.descKey)}
+                    </p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Our Values */}
+          <div className="bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16 rounded-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold text-center text-secondary mb-12"
+            >
+              {t('about.values.title')}
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {values.map((value, index) => (
+                <motion.div
+                  key={value.titleKey}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`group ${index === values.length - 1 ? 'md:col-span-2' : ''}`}
+                >
+                  <div className="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:border-primary hover:shadow-2xl shadow-primary/20 transition-all duration-300 h-full">
+                    <div className="shrink-0 w-14 h-14 rounded-lg bg-linear-to-b  flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <value.icon className="text-primary" size={28} />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-secondary mb-2 group-hover:text-primary transition-colors">
+                        {t(value.titleKey)}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {t(value.descKey)}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-secondary mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {value.description}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

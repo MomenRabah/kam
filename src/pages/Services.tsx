@@ -1,54 +1,67 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
-import { Briefcase, Heart, TrendingUp, Music, Users, Sparkles } from 'lucide-react';
+import { Briefcase, Camera, Utensils, Monitor, Users, Building2 } from 'lucide-react';
 
 const Services = () => {
   const { t } = useTranslation();
 
   const services = [
     {
+      icon: Building2,
+      titleKey: 'services.boothExperts.title',
+      descKey: 'services.boothExperts.description',
+      featuresKey: 'services.boothExperts.features',
+    },
+    {
       icon: Briefcase,
-      titleKey: 'services.corporate.title',
-      descKey: 'services.corporate.description',
-      features: ['Conferences', 'Seminars', 'Team Building', 'Product Launches'],
+      titleKey: 'services.conferences.title',
+      descKey: 'services.conferences.description',
+      featuresKey: 'services.conferences.features',
     },
     {
-      icon: Heart,
-      titleKey: 'services.weddings.title',
-      descKey: 'services.weddings.description',
-      features: ['Wedding Planning', 'Venue Selection', 'Catering', 'Decoration'],
+      icon: Camera,
+      titleKey: 'services.photography.title',
+      descKey: 'services.photography.description',
+      featuresKey: 'services.photography.features',
     },
     {
-      icon: TrendingUp,
-      titleKey: 'services.exhibitions.title',
-      descKey: 'services.exhibitions.description',
-      features: ['Trade Shows', 'Booth Design', 'Brand Activation', 'Exhibitions'],
+      icon: Utensils,
+      titleKey: 'services.catering.title',
+      descKey: 'services.catering.description',
+      featuresKey: 'services.catering.features',
     },
     {
-      icon: Music,
-      titleKey: 'services.entertainment.title',
-      descKey: 'services.entertainment.description',
-      features: ['Concerts', 'Festivals', 'Live Shows', 'Entertainment'],
+      icon: Monitor,
+      titleKey: 'services.digitalEntertainment.title',
+      descKey: 'services.digitalEntertainment.description',
+      featuresKey: 'services.digitalEntertainment.features',
     },
     {
       icon: Users,
-      titleKey: 'services.corporate.title',
-      descKey: 'services.corporate.description',
-      features: ['Social Events', 'Private Parties', 'Networking', 'Celebrations'],
-    },
-    {
-      icon: Sparkles,
-      titleKey: 'services.entertainment.title',
-      descKey: 'services.entertainment.description',
-      features: ['Theme Events', 'Gala Dinners', 'Award Ceremonies', 'Special Occasions'],
+      titleKey: 'services.serviceSquad.title',
+      descKey: 'services.serviceSquad.description',
+      featuresKey: 'services.serviceSquad.features',
     },
   ];
 
   return (
-    <div className="pt-20">
-      <section className="py-20 bg-linear-to-br from-secondary to-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div>
+      <section className="relative py-20 bg-linear-to-r bg-background overflow-hidden text-white">
+      {/* Soft abstract light glow */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        {/* Light blob 1 */}
+        <div className="absolute w-[100px] h-[100px] bg-primary/90 blur-lg rounded-full -translate-x-8 -translate-y-1 mix-blend-screen opacity-70" />
+
+        {/* Light blob 2 */}
+        <div className="absolute w-[120px] h-[120px] bg-accent/70 blur-2xl rounded-full translate-x-10 -translate-y-4 mix-blend-screen opacity-70" />
+        {/* Subtle center glow */}
+        <div className="absolute w-[150px] h-[150px] bg-primary/60 blur-xl rounded-full translate-x-2 translate-y-4 mix-blend-screen opacity-80" />
+      </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +81,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
@@ -83,16 +96,16 @@ const Services = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                     <service.icon className="text-primary" size={32} />
                   </div>
-                  <h3 className="text-2xl font-semibold text-secondary mb-4">
+                  <h3 className="text-2xl font-bold text-secondary mb-4">
                     {t(service.titleKey)}
                   </h3>
                   <p className="text-gray-600 mb-6">
                     {t(service.descKey)}
                   </p>
                   <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-gray-700">
-                        <span className="w-2 h-2 bg-accent rounded-full"></span>
+                    {(t(service.featuresKey, { returnObjects: true }) as string[]).map((feature: string, idx: number) => (
+                      <li key={idx} className="flex items-center gap-2 text-gray-600">
+                        <span className="w-2 h-2 bg-primary rounded-full"></span>
                         {feature}
                       </li>
                     ))}

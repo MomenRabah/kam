@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import Button from '../components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import Input from '../components/ui/Input';
 import Textarea from '../components/ui/Textarea';
 import { Send } from 'lucide-react';
@@ -26,14 +26,14 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
             {t('contact.title')}
@@ -91,10 +91,14 @@ const ContactSection = () => {
                 required
               />
             </div>
-            <Button type="submit" size="lg" className="w-full group">
-              {t('contact.send')}
-              <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </Button>
+              <Button 
+                type="submit"
+                size="lg" 
+                className="border w-full px-4 group hover:border-primary text-white bg-primary hover:text-white transition-all "
+              >          
+                {t('contact.send')}
+                <Send className="ml-2 group-hover:ltr:translate-x-1 group-hover:rtl:-translate-x-1 transition-transform" size={20} />
+              </Button>
           </motion.form>
         </div>
       </div>

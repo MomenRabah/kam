@@ -1,28 +1,37 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import Button from '../components/ui/Button';
-import DottedGlowBackground from '../components/DotDistortionShader';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 const HeroSection = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
 
-  return (
-    <section className="relative isolate bg-secondary overflow-hidden">
-      {/* Dotted Glow Background */}
-      <DottedGlowBackground />
+  const handleScrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
+  const handleScrollToServices = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <section className="relative isolate overflow-hidden bg-secondary">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 via-transparent to-black/80" />
+      
       <div className="relative px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div className="mx-auto max-w-6xl py-24 sm:py-48 lg:py-56">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-start flex flex-col items-start justify-center"
           >
             <motion.h1 
-              className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl"
+              className="flex flex-col text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl gap-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -32,7 +41,7 @@ const HeroSection = () => {
             </motion.h1>
             
             <motion.p 
-              className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8"
+              className="mt-8 text-base font-normal text-pretty text-gray-300 sm:text-xl/8 max-w-4xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -46,27 +55,36 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <Button size="lg" className="group shadow-lg">
-                {t('hero.cta')}
-                <ArrowRight 
-                  className={`ml-2 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} 
-                  size={20} 
-                />
-              </Button>
-              <a href="#services" className="text-sm/6 font-semibold text-white hover:text-accent transition-colors">
-                {t('hero.ctaSecondary')} <span aria-hidden="true">→</span>
+              <a href="#contact" onClick={handleScrollToContact}>
+                <Button 
+                  size="lg" 
+                  className="border px-4 hover:scale-105 hover:border-primary text-white bg-primary hover:text-white transition-all "
+                >
+                  {t('hero.cta')}
+                  {isRTL ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
+                </Button>
+              </a>
+              <a href="#services" onClick={handleScrollToServices} className="text-sm/6 font-semibold text-white hover:text-accent transition-colors">
+                {t('hero.ctaSecondary')}
               </a>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Gradient blur bottom */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-        <div 
-          style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }}
-          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-accent to-primary opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-        />
+      {/* Brand color glows - organic globe effect */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center">
+        {/* Large orange core - slightly left and up */}
+        <div aria-hidden="true" className="absolute -translate-x-12 -translate-y-8 w-[400px] h-[400px] sm:w-[700px] sm:h-[700px] bg-primary/40 blur-3xl rounded-full" />
+        
+        {/* Medium yellow layer - slightly right and down */}
+        <div aria-hidden="true" className="absolute translate-x-16 translate-y-12 w-[350px] h-[350px] sm:w-[600px] sm:h-[600px] bg-accent/35 blur-3xl rounded-full" />
+        
+        {/* Small orange accent - slightly right and up */}
+        <div aria-hidden="true" className="absolute translate-x-8 -translate-y-16 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-primary/30 blur-3xl rounded-full" />
+        
+        {/* Inner yellow glow - slightly left and down */}
+        <div aria-hidden="true" className="absolute -translate-x-10 translate-y-10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-accent/25 blur-3xl rounded-full" />
       </div>
     </section>
   );

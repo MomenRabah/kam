@@ -6,41 +6,60 @@
     "contact": "Contact Us"
   },
   "hero": {
-    "title": "Create Unforgettable",
-    "titleHighlight": "Experiences",
-    "subtitle": "Transform your vision into reality with our premium event planning and management services",
-    "cta": "Book Now",
+    "title": "Crafting Experiences That Define",
+    "titleHighlight": "Your Brand Presence",
+    "subtitle": "From booth design and construction to catering, photography, digital entertainment, and fully integrated event squads, KAM transforms ideas into living experiences that create strong presence and lasting memories.",
+    "cta": "Plan Your Event With Us",
     "ctaSecondary": "Learn More"
   },
   "services": {
     "title": "Our Services",
     "subtitle": "Comprehensive event solutions tailored to your needs",
-    "corporate": {
-      "title": "Corporate Events",
-      "description": "Professional conferences, seminars, and corporate gatherings"
+    "description": "Everything you need to create unforgettable events and experiences",
+    "boothExperts": {
+      "title": "BOOTH EXPERTS, DESIGN & BUILD",
+      "description": "Professional booth design and construction services that bring your brand vision to life with expert craftsmanship.",
+      "features": ["Custom Booth Design", "3D Visualization", "Construction & Installation", "Brand Integration"]
     },
-    "weddings": {
-      "title": "Weddings & Celebrations",
-      "description": "Make your special day truly memorable with our expert planning"
+    "conferences": {
+      "title": "CONFERENCES & EXHIBITIONS",
+      "description": "Comprehensive conference and exhibition management services that deliver impactful and memorable experiences.",
+      "features": ["Event Planning", "Venue Management", "Technical Support", "Registration Services"]
     },
-    "exhibitions": {
-      "title": "Exhibitions & Trade Shows",
-      "description": "Stand out with professionally managed exhibitions and booths"
+    "photography": {
+      "title": "PHOTOGRAPHY",
+      "description": "Capture every moment with our professional photography services, ensuring your events are documented beautifully.",
+      "features": ["Event Coverage", "Professional Editing", "High-Resolution Photos", "Same-Day Delivery"]
     },
-    "entertainment": {
-      "title": "Entertainment Events",
-      "description": "Concerts, festivals, and entertainment experiences"
+    "catering": {
+      "title": "CATERING SERVICES",
+      "description": "Premium catering solutions that delight your guests with exceptional cuisine and impeccable service.",
+      "features": ["Custom Menus", "Professional Staff", "Dietary Options", "Premium Ingredients"]
+    },
+    "digitalEntertainment": {
+      "title": "DIGITAL ENTERTAINMENT",
+      "description": "Cutting-edge digital entertainment experiences that engage and captivate your audience.",
+      "features": ["Interactive Displays", "Virtual Reality", "Live Streaming", "Digital Activations"]
+    },
+    "serviceSquad": {
+      "title": "SERVICE SQUAD",
+      "description": "Dedicated professional teams providing comprehensive event support and management excellence.",
+      "features": ["Event Coordination", "On-Site Management", "Technical Support", "Guest Services"]
     }
   },
   "stats": {
-    "events": "Events Completed",
-    "clients": "Happy Clients",
-    "years": "Years Experience",
-    "team": "Team Members"
+    "years": {
+      "number": "20",
+      "label": "YEARS OF EXCELLENCE"
+    },
+    "projects": {
+      "number": "365",
+      "label": "PROJECTS DELIVERED PROFESSIONALLY"
+    }
   },
   "clients": {
-    "title": "Trusted By Leading Brands",
-    "subtitle": "We've partnered with industry leaders to deliver exceptional events"
+    "title": "Trusted partner to leading brands",
+    "subtitle": "Together, we create impactful events that leave a clear mark and deliver real results"
   },
   "testimonials": {
     "title": "What Our Clients Say",
@@ -60,9 +79,48 @@
     "message": "Your Message",
     "send": "Send Message",
     "info": {
-      "address": "123 Event Street, Dubai, UAE",
-      "phone": "+971 50 123 4567",
-      "email": "info@eventscompany.com"
+      "address": "Riyadh, Saudi Arabia",
+      "phone": "+966 55 866 5618",
+      "email": "info@kam-saudi.com"
+    }
+  },
+  "about": {
+    "heroSubtitle": "Where visions are transformed into real experiences since 2008",
+    "whoWeAre": "Who We Are",
+    "paragraph1": "Established in 2008, Kasr Al-Amouyyeen (KAM) has grown into a leading company specializing in booth construction and full-scale event management.",
+    "paragraph2": "We deliver end-to-end solutions that transform ideas into immersive experiences—covering everything from concept development and planning to flawless execution. Whether it's exhibitions, conferences, or private events, we create environments that elevate brand presence and leave lasting impressions.",
+    "paragraph3": "Our team brings extensive expertise in designing and executing distinctive events that align with our clients' vision and objectives. We proudly serve public and private sectors, as well as individual clients, offering tailored solutions that ensure precision, quality, and impact.",
+    "paragraph4": "Driven by innovation and a commitment to excellence, we continuously push boundaries to deliver creative, high-quality results. We take pride in the trust of our partners and the satisfaction of our clients—striving to exceed expectations in every project we undertake.",
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading company in delivering innovative and integrated event solutions across the region."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To transform our clients' ideas into successful events through end-to-end solutions from planning to execution."
+    },
+    "values": {
+      "title": "Our Values",
+      "commitment": {
+        "title": "Commitment",
+        "description": "Delivering projects with excellence and on time."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Creating forward-thinking solutions using modern technologies."
+      },
+      "trust": {
+        "title": "Trust",
+        "description": "Building strong relationships through transparency and reliability."
+      },
+      "quality": {
+        "title": "Quality",
+        "description": "Ensuring high standards and precision in every detail."
+      },
+      "customerFirst": {
+        "title": "Customer First",
+        "description": "Placing our clients at the heart of everything we do."
+      }
     }
   },
   "footer": {
@@ -70,5 +128,9 @@
     "quickLinks": "Quick Links",
     "followUs": "Follow Us",
     "rights": "All rights reserved"
+  },
+  "gallary": {
+    "title": "Our Work",
+    "description": "Explore our portfolio of successful events and projects"
   }
 }
