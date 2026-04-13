@@ -86,7 +86,7 @@ const HeroSection = () => {
         {/* Inner yellow glow - slightly left and down */}
         <div aria-hidden="true" className="absolute -translate-x-10 translate-y-10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-accent/25 blur-3xl rounded-full" />
       </div>
-    </section>
+    </section> 
   );
 };
 
