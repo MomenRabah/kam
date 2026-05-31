@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { inView } from 'motion';
 
 // Import client logos
 import logo01 from '../assets/clients/01-01.svg';
@@ -18,6 +19,17 @@ import logo12 from '../assets/clients/01-12.svg';
 const ClientsSection = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      inView(headerRef.current, (el) => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'translateY(0)';
+        (el as HTMLElement).style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+      });
+    }
+  }, []);
 
   // Client logos array
   const clients = [
@@ -35,63 +47,83 @@ const ClientsSection = () => {
     { name: 'Client 12', logo: logo12 },
   ];
 
-  // Duplicate the array for seamless infinite scroll
-  const duplicatedClients = [...clients, ...clients];
+  // Split clients into two rows
+  const row1Clients = clients.slice(0, 6);
+  const row2Clients = clients.slice(6, 12);
+
+  // Duplicate the arrays for seamless infinite scroll
+  const duplicatedRow1 = [...row1Clients, ...row1Clients];
+  const duplicatedRow2 = [...row2Clients, ...row2Clients];
 
   return (
-    <section className="py-12 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+    <section className="min-h-screen bg-black flex flex-col justify-center py-12 overflow-hidden relative">
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/3 rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-16">
+        <div ref={headerRef} className="text-center" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+                      {/* Sticker Tag */}
+            <div className="absolute ltr:-top-5 ltr:-left-4 rtl:-top-5 rtl:-right-4 ltr:-rotate-10 rtl:rotate-10 bg-accent px-2 py-1 shadow-lg z-10">
+              <p className="text-black text-xs leading-tight text-center whitespace-nowrap">
+                {isRTL ? 'ثقة نفخر بها' : 'Built On Trust'}
+              </p>
+            </div>
+            
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {t('clients.title')}
           </h2>
-          <p className="text-md text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-primary max-w-2xl mx-auto">
             {t('clients.subtitle')}
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Infinite Scrolling Container */}
-      <div className="relative">
+      <div className="relative z-10 space-y-6">
         {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-white to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-white to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-black to-transparent z-10 m-0" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-black to-transparent z-10 m-0" />
         
-        {/* Scrolling track */}
-        <div className="flex">
-          <motion.div
-            className="flex gap-8 py-8"
-            animate={{
-              x: isRTL ? [0, 150 * clients.length] : [0, -150 * clients.length],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 30,
-                ease: "linear",
-              },
-            }}
+        {/* Row 1 - Scrolling Right */}
+        <div className="overflow-hidden" dir="ltr">
+          <div
+            className="flex gap-6 animate-scroll-right"
+            style={{ animationDuration: '10s' }}
           >
-            {duplicatedClients.map((client, index) => (
+            {duplicatedRow1.map((client, index) => (
               <div
-                key={`${client.name}-${index}`}
-                className="flex items-center justify-center min-w-[200px] h-32 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors shrink-0"
+                key={`row1-${client.name}-${index}`}
+                className="flex items-center justify-center min-w-[200px] h-28 p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all duration-300 shrink-0"
               >
                 <img 
                   src={client.logo} 
                   alt={client.name}
-                  className="max-h-32 max-w-full object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all"
+                  className="max-h-20 max-w-full object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-all duration-300"
                 />
               </div>
             ))}
-          </motion.div>
+          </div>
+        </div>
+
+        {/* Row 2 - Scrolling Left */}
+        <div className="overflow-hidden" dir="ltr">
+          <div
+            className="flex gap-6 animate-scroll-left"
+            style={{ animationDuration: '10s' }}
+          >
+            {duplicatedRow2.map((client, index) => (
+              <div
+                key={`row2-${client.name}-${index}`}
+                className="flex items-center justify-center min-w-[200px] h-28 p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-primary/30 hover:bg-white/10 transition-all duration-300 shrink-0"
+              >
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="max-h-20 max-w-full object-contain brightness-0 invert opacity-50 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

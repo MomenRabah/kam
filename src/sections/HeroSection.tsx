@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import heroImage from '@/assets/hero-image.jpg';
 
 const HeroSection = () => {
   const { t, i18n } = useTranslation();
@@ -12,79 +12,54 @@ const HeroSection = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleScrollToServices = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleScrollDown = () => {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-secondary">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/50 via-transparent to-black/80" />
-      
-      <div className="relative px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-6xl py-24 sm:py-48 lg:py-56">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-start flex flex-col items-start justify-center"
-          >
-            <motion.h1 
-              className="flex flex-col text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl gap-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              {t('hero.title')}{' '}
-              <span className="text-accent">{t('hero.titleHighlight')}</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="mt-8 text-base font-normal text-pretty text-gray-300 sm:text-xl/8 max-w-4xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              {t('hero.subtitle')}
-            </motion.p>
-            
-            <motion.div 
-              className="mt-10 flex items-center justify-center gap-x-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <a href="#contact" onClick={handleScrollToContact}>
-                <Button 
-                  size="lg" 
-                  className="border px-4 hover:scale-105 hover:border-primary text-white bg-primary hover:text-white transition-all "
-                >
-                  {t('hero.cta')}
-                  {isRTL ? <ArrowLeft size={20} /> : <ArrowRight size={20} />}
-                </Button>
-              </a>
-              <a href="#services" onClick={handleScrollToServices} className="text-sm/6 font-semibold text-white hover:text-accent transition-colors">
-                {t('hero.ctaSecondary')}
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
+    <section id="hero" className="relative isolate overflow-hidden bg-secondary h-dvh w-full">
+      {/* Image Background - flipped horizontally */}
+      <img
+        src={heroImage}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover -z-20 ltr:-scale-x-100 rtl:scale-x-100"
+      />
 
-      {/* Brand color glows - organic globe effect */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center">
-        {/* Large orange core - slightly left and up */}
-        <div aria-hidden="true" className="absolute -translate-x-12 -translate-y-8 w-[400px] h-[400px] sm:w-[700px] sm:h-[700px] bg-primary/40 blur-3xl rounded-full" />
-        
-        {/* Medium yellow layer - slightly right and down */}
-        <div aria-hidden="true" className="absolute translate-x-16 translate-y-12 w-[350px] h-[350px] sm:w-[600px] sm:h-[600px] bg-accent/35 blur-3xl rounded-full" />
-        
-        {/* Small orange accent - slightly right and up */}
-        <div aria-hidden="true" className="absolute translate-x-8 -translate-y-16 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-primary/30 blur-3xl rounded-full" />
-        
-        {/* Inner yellow glow - slightly left and down */}
-        <div aria-hidden="true" className="absolute -translate-x-10 translate-y-10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-accent/25 blur-3xl rounded-full" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/70 -z-10" />
+      
+      {/* Content Container */}
+      <div className="relative h-full flex flex-col justify-end pb-32 px-8 lg:px-20">
+        <div className="flex flex-col items-start">
+          <h1 className="flex flex-col font-bold tracking-tight">
+            <span className="text-3xl sm:text-7xl lg:text-8xl text-primary animate-[fadeInUp_0.8s_ease-out]">
+              {t('hero.beyondLimits')}
+            </span>
+            <span className="text-3xl sm:text-7xl lg:text-8xl text-white rtl:mt-6 mt-2 sm:mt-10 rtl:sm:mt-16 animate-[fadeInUp_0.8s_ease-out_0.2s_both]">
+              {t('hero.toTheSpace')}
+            </span>
+          </h1>
+          
+          <div className="mt-6 sm:mt-20 animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
+            <a href="#contact" onClick={handleScrollToContact}>
+              <Button 
+                size="lg" 
+                className="border px-6 py-3 text-lg text-black bg-accent transition-colors hover:bg-black hover:text-white"
+              >
+                {t('hero.cta')}
+                {isRTL ? <ArrowLeft size={24} /> : <ArrowRight size={24} />}
+              </Button>
+            </a>
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <button
+          onClick={handleScrollDown}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/80 cursor-pointer"
+        >
+          <ChevronDown size={32} className="animate-bounce" />
+        </button>
       </div>
     </section> 
   );

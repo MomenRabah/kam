@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { inView } from 'motion';
 import { Button } from '@/components/ui/Button';
 import Input from '../components/ui/Input';
 import Textarea from '../components/ui/Textarea';
@@ -9,6 +9,26 @@ import { Send } from 'lucide-react';
 
 const ContactSection = () => {
   const { t } = useTranslation();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      inView(headerRef.current, (el) => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'translateY(0)';
+        (el as HTMLElement).style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+      });
+    }
+    if (formRef.current) {
+      inView(formRef.current, (el) => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'translateY(0)';
+        (el as HTMLElement).style.transition = 'opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s';
+      });
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,31 +46,27 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+    <section id="contact" className="min-h-screen bg-black flex items-center justify-center py-20 relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div ref={headerRef} className="text-center mb-12" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {t('contact.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             {t('contact.subtitle')}
           </p>
-        </motion.div>
+        </div>
 
-        <div className="max-w-2xl mx-auto">
-          <motion.form
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+        <div className="max-w-xl mx-auto">
+          <form
+            ref={formRef}
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="space-y-5"
+            style={{ opacity: 0, transform: 'translateY(30px)' }}
           >
             <div>
               <Input
@@ -59,6 +75,7 @@ const ContactSection = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 rounded py-4"
               />
             </div>
             <div>
@@ -69,6 +86,7 @@ const ContactSection = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 rounded py-4"
               />
             </div>
             <div>
@@ -79,6 +97,7 @@ const ContactSection = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 rounded py-4"
               />
             </div>
             <div>
@@ -87,19 +106,20 @@ const ContactSection = () => {
                 placeholder={t('contact.message')}
                 value={formData.message}
                 onChange={handleChange}
-                rows={6}
+                rows={5}
                 required
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 rounded"
               />
             </div>
               <Button 
                 type="submit"
                 size="lg" 
-                className="border w-full px-4 group hover:border-primary text-white bg-primary hover:text-white transition-all "
+                className="w-fit px-6 py-4 group bg-primary border-2 border-primary text-white hover:bg-transparent transition-all"
               >          
                 {t('contact.send')}
                 <Send className="ml-2 group-hover:ltr:translate-x-1 group-hover:rtl:-translate-x-1 transition-transform" size={20} />
               </Button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>

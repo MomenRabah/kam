@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { useRef } from "react";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRef, useEffect } from "react";
+import { inView } from "motion";
+import { useTranslation } from 'react-i18next';
 
 import img1 from '../assets/images/01 (1).jpg';
 import img2 from '../assets/images/01 (2).jpg';
@@ -29,145 +29,100 @@ import img25 from '../assets/images/01 (25).jpg';
 import { t } from "i18next";
 
 const GallerySection = () => {
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
 
   const imagesRow1 = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12];
   const imagesRow2 = [img13, img14, img15, img16, img17, img18, img19, img21, img22, img23, img24, img25];
 
-  const scrollDistance = 800;
-
-  const smoothScroll = (el: HTMLDivElement, target: number, onComplete?: () => void) => {
-    const start = el.scrollLeft;
-    const distance = target - start;
-    const duration = 500;
-    let startTime: number | null = null;
-
-    const ease = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      el.scrollLeft = start + distance * ease(progress);
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        onComplete?.();
-      }
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  const scrollRow = (el: HTMLDivElement, dir: 'left' | 'right') => {
-    const current = el.scrollLeft;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    if (dir === 'right') {
-      if (current >= maxScroll - 10) {
-        // At the end — jump back to start
-        smoothScroll(el, 0);
-      } else {
-        smoothScroll(el, Math.min(maxScroll, current + scrollDistance));
-      }
-    } else {
-      if (current <= 10) {
-        // At the start — jump to end
-        smoothScroll(el, maxScroll);
-      } else {
-        smoothScroll(el, Math.max(0, current - scrollDistance));
-      }
+  useEffect(() => {
+    if (headerRef.current) {
+      inView(headerRef.current, (el) => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'translateY(0)';
+        (el as HTMLElement).style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+      });
     }
-  };
-
-  const handleScroll = (direction: 'left' | 'right') => {
-    if (!row1Ref.current || !row2Ref.current) return;
-    scrollRow(row1Ref.current, direction);
-    scrollRow(row2Ref.current, direction === 'left' ? 'right' : 'left');
-  };
+  }, []);
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
-            {t("gallary.title")}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t("gallary.description")}
-          </p>
-        </motion.div>
-      </div>
+    <section className="min-h-screen bg-black flex items-center py-20 relative overflow-hidden">
+      {/* Ambient glow */}
+      {/* <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" /> */}
 
-      <div className="space-y-8">
-        {/* ROW 1 */}
-        <div
-          ref={row1Ref}
-          className="overflow-x-auto scrollbar-hide"
-        >
-          <div className="flex gap-4 px-4">
-            {imagesRow1.map((image, index) => (
-              <div
-                key={index}
-                className="relative shrink-0 w-[380px] h-[280px] rounded-xl overflow-hidden group/item"
-              >
-                <img
-                  src={image}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover/item:scale-110"
-                  alt={`Gallery ${index + 1}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
+      {/* Main Container */}
+      <div className="relative z-10 w-full">
+        {/* Title & Description - Positioned Over Images */}
+        <div className="absolute top-1/2 -translate-y-1/2 ltr:left-8 ltr:lg:left-20 rtl:right-8 rtl:lg:right-20 z-30 max-w-md">
+          <div ref={headerRef} className="text-start relative w-2/3" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+            {/* Sticker Tag */}
+            <div className="absolute ltr:-top-3 ltr:-right-6 rtl:-top-5 rtl:left-14 ltr:rotate-10 rtl:-rotate-10 bg-primary px-2 py-1 shadow-lg z-10">
+              <p className="text-white text-xs leading-tight text-center whitespace-nowrap">
+                {isRTL ? 'حيث تتحوّل الأفكار إلى واقع' : 'Where Ideas Become Reality'}
+              </p>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              {t("gallary.title")}
+            </h2>
+            <p className="text-lg text-accent">
+              {t("gallary.description")}
+            </p>
           </div>
         </div>
 
-        {/* ROW 2 */}
-        <div
-          ref={row2Ref}
-          className="overflow-x-auto scrollbar-hide"
-        >
-          <div className="flex gap-4 px-4">
-            {imagesRow2.map((image, index) => (
-              <div
-                key={index}
-                className="relative shrink-0 w-[380px] h-[280px] rounded-xl overflow-hidden group/item"
-              >
-                <img
-                  src={image}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover/item:scale-110"
-                  alt={`Gallery ${index + 1}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
+        {/* Fading Gradient Overlay - Covers Left/Right Side */}
+        <div 
+          className="absolute inset-y-0 ltr:left-0 rtl:right-0 w-3/4 lg:w-1/2 z-20 pointer-events-none"
+          style={{
+            background: isRTL 
+              ? 'linear-gradient(to left, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 40%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.3) 80%, transparent 100%)'
+              : 'linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 40%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.3) 80%, transparent 100%)'
+          }}
+        />
+
+        {/* Scrolling Images - Full Width */}
+        <div className="relative overflow-hidden space-y-6">
+          {/* ROW 1 - Scrolling Left */}
+          <div className="overflow-hidden">
+            <div className="flex gap-4 animate-scroll-left" style={{ animationDuration: '9s' }}>
+              {[...imagesRow1, ...imagesRow1].map((image, index) => (
+                <div
+                  key={index}
+                  className="relative shrink-0 w-[280px] h-[160px] sm:w-[380px] sm:h-[260px] rounded-2xl overflow-hidden group/item border border-white/10"
+                >
+                  <img
+                    src={image}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                    alt={`Gallery ${index + 1}`}
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ROW 2 - Scrolling Right */}
+          <div className="overflow-hidden">
+            <div className="flex gap-4 animate-scroll-right" style={{ animationDuration: '9s' }}>
+              {[...imagesRow2, ...imagesRow2].map((image, index) => (
+                <div
+                  key={index}
+                  className="relative shrink-0 w-[280px] h-[160px] sm:w-[380px] sm:h-[260px] rounded-2xl overflow-hidden group/item border border-white/10"
+                >
+                  <img
+                    src={image}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+                    alt={`Gallery ${index + 1}`}
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Arrows */}
-      <div className="flex justify-center flex-row ltr:flex-row-reverse items-center gap-6 mt-10">
-        <button
-          onClick={() => handleScroll('right')}
-          className="bg-white hover:bg-secondary hover:text-white text-secondary p-2 rounded-full transition-all duration-300"
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => handleScroll('left')}
-          className="bg-white hover:bg-secondary hover:text-white text-secondary p-2 rounded-full transition-all duration-300"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
       </div>
     </section>
   );

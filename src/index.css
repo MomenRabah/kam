@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/alexandria";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,8 +9,8 @@
   --color-accent: #FBD900;
   --color-background: #0b0c10;
 
-  --font-sans: 'Geist Variable', 'ibmplexsansarabic', system-ui, sans-serif;
-  --font-arabic: 'ibmplexsansarabic', system-ui, sans-serif;
+  --font-sans: 'Alexandria Variable', system-ui, sans-serif;
+  --font-arabic: 'Alexandria Variable', system-ui, sans-serif;
 }
 
 body {
@@ -49,45 +49,45 @@ body {
 }
 
 :root {
-  --background: #0b0c10;
+  --background: #000000;
   --foreground: #ffffff;
-  --card: #1a1b1e;
+  --card: #0a0a0a;
   --card-foreground: #ffffff;
-  --popover: #1a1b1e;
+  --popover: #0a0a0a;
   --popover-foreground: #ffffff;
   --primary: #E76424;
   --primary-foreground: #ffffff;
   --secondary: #000000;
   --secondary-foreground: #ffffff;
-  --muted: #2a2b2e;
-  --muted-foreground: #9ca3af;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
   --accent: #FBD900;
-  --accent-foreground: #0b0c10;
+  --accent-foreground: #000000;
   --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
   --ring: #E76424;
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: #0b0c10;
+  --background: #000000;
   --foreground: #ffffff;
-  --card: #1a1b1e;
+  --card: #0a0a0a;
   --card-foreground: #ffffff;
-  --popover: #1a1b1e;
+  --popover: #0a0a0a;
   --popover-foreground: #ffffff;
   --primary: #E76424;
   --primary-foreground: #ffffff;
   --secondary: #000000;
   --secondary-foreground: #ffffff;
-  --muted: #2a2b2e;
-  --muted-foreground: #9ca3af;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
   --accent: #FBD900;
-  --accent-foreground: #0b0c10;
+  --accent-foreground: #000000;
   --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
   --ring: #E76424;
 }
 
@@ -101,6 +101,24 @@ body {
   html {
     @apply font-sans;
   }
+  
+  * {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+}
+
+/* Controlled scroll snapping for landing page */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: auto;
+  min-height: 100vh;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 @layer utilities {
@@ -141,5 +159,16 @@ body {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

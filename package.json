@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
+    "@fontsource-variable/alexandria": "^5.2.8",
     "@fontsource-variable/geist": "^5.2.8",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
@@ -20,6 +21,7 @@
     "framer-motion": "^12.38.0",
     "i18next": "^26.0.4",
     "lucide-react": "^1.8.0",
+    "motion": "^12.40.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-i18next": "^17.0.2",

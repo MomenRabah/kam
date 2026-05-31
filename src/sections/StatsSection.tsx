@@ -36,14 +36,18 @@ const StatsSection = () => {
   const { t } = useTranslation();
 
   const stats = [
-    { value: 20, label: t('stats.years.label'), suffix: '+' },
+    { value: 16, label: t('stats.years.label'), suffix: '+' },
     { value: 365, label: t('stats.projects.label'), suffix: '+' },
   ];
 
   return (
-    <section className="py-12 bg-gray-50 text-secondary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+    <section className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+      {/* Ambient glows */}
+      <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 right-1/4 w-[250px] h-[250px] bg-accent/10 rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -53,11 +57,11 @@ const StatsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-6xl md:text-7xl font-bold text-primary mb-4">
-                <Counter  value={stat.value} />
+              <div className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-accent mb-4">
+                <Counter value={stat.value} />
                 {stat.suffix}
               </div>
-              <p className="text-xl md:text-2xl font-semibold text-secondary uppercase tracking-wide">{stat.label}</p>
+              <p className="text-xl md:text-2xl font-medium text-white/80 uppercase tracking-widest">{stat.label}</p>
             </motion.div>
           ))}
         </div>
