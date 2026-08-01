@@ -21,6 +21,23 @@ body {
   font-family: var(--font-arabic);
 }
 
+/* Arabic script needs more breathing room between lines than Latin */
+[dir="rtl"] .leading-tight {
+  line-height: 1.6;
+}
+[dir="rtl"] .leading-snug {
+  line-height: 1.8;
+}
+[dir="rtl"] .leading-normal {
+  line-height: 1.9;
+}
+[dir="rtl"] .leading-relaxed {
+  line-height: 2;
+}
+[dir="rtl"] .leading-loose {
+  line-height: 2.15;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   
@@ -108,19 +125,6 @@ body {
   }
 }
 
-/* Controlled scroll snapping for landing page */
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: auto;
-  min-height: 100vh;
-}
-
-.snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -142,6 +146,10 @@ body {
   .animate-scroll-right:hover {
     animation-play-state: paused;
   }
+}
+
+[dir="rtl"] h2 {
+  @apply leading-16
 }
 
 @keyframes scroll-left {

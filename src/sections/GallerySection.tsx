@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import { inView } from "motion";
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import img1 from '../assets/images/01 (1).jpg';
 import img2 from '../assets/images/01 (2).jpg';
@@ -26,11 +28,10 @@ import img22 from '../assets/images/01 (22).jpg';
 import img23 from '../assets/images/01 (23).jpg';
 import img24 from '../assets/images/01 (24).jpg';
 import img25 from '../assets/images/01 (25).jpg';
-import { t } from "i18next";
 
 const GallerySection = () => {
   const headerRef = useRef<HTMLDivElement>(null);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
 
   const imagesRow1 = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12];
@@ -47,7 +48,7 @@ const GallerySection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-black flex items-center py-20 relative overflow-hidden">
+    <section id="gallery" className="bg-black py-[130px] relative overflow-hidden">
       {/* Ambient glow */}
       {/* <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl" /> */}
@@ -55,16 +56,16 @@ const GallerySection = () => {
       {/* Main Container */}
       <div className="relative z-10 w-full">
         {/* Title & Description - Positioned Over Images */}
-        <div className="absolute top-1/2 -translate-y-1/2 ltr:left-8 ltr:lg:left-20 rtl:right-8 rtl:lg:right-20 z-30 max-w-md">
-          <div ref={headerRef} className="text-start relative w-2/3" style={{ opacity: 0, transform: 'translateY(20px)' }}>
+        <div className="absolute top-6 ltr:left-8 ltr:lg:left-20 rtl:right-8 rtl:lg:right-20 z-30 max-w-md">
+          <div ref={headerRef} style={{ opacity: 0, transform: 'translateY(20px)' }}>
             {/* Sticker Tag */}
-            <div className="absolute ltr:-top-3 ltr:-right-6 rtl:-top-5 rtl:left-14 ltr:rotate-10 rtl:-rotate-10 bg-primary px-2 py-1 shadow-lg z-10">
-              <p className="text-white text-xs leading-tight text-center whitespace-nowrap">
-                {isRTL ? 'حيث تتحوّل الأفكار إلى واقع' : 'Where Ideas Become Reality'}
+            <div className="inline-block bg-primary px-3 py-1.5 mb-4 shadow-lg">
+              <p className="text-white text-xs font-semibold leading-tight">
+                {t('gallary.sticker')}
               </p>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
               {t("gallary.title")}
             </h2>
             <p className="text-lg text-accent">
@@ -122,6 +123,16 @@ const GallerySection = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="relative z-30 flex justify-center mt-11">
+          <Link
+            to="/gallery"
+            className="inline-flex h-[52px] items-center gap-2.5 rounded-none bg-transparent text-white border border-white/30 px-8 font-semibold text-[15px] no-underline transition-colors hover:border-primary hover:text-primary"
+          >
+            {t('gallary.viewMore')}
+            {isRTL ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
+          </Link>
         </div>
       </div>
     </section>

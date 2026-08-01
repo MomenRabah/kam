@@ -5,7 +5,7 @@ import { inView } from 'motion';
 import { Button } from '@/components/ui/Button';
 import Input from '../components/ui/Input';
 import Textarea from '../components/ui/Textarea';
-import { Send } from 'lucide-react';
+import { Send, MapPin, Phone, Mail } from 'lucide-react';
 
 const ContactSection = () => {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-black flex items-center justify-center py-20 relative overflow-hidden">
+    <section id="contact" className="bg-black py-[130px] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-3xl" />
@@ -61,7 +61,7 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           <form
             ref={formRef}
             onSubmit={handleSubmit}
@@ -111,15 +111,32 @@ const ContactSection = () => {
                 className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary/50 rounded"
               />
             </div>
-              <Button 
+              <Button
                 type="submit"
-                size="lg" 
-                className="w-fit px-6 py-4 group bg-primary border-2 border-primary text-white hover:bg-transparent transition-all"
-              >          
+                size="lg"
+                className="h-[52px] rounded-none px-8 group bg-primary border-2 border-primary text-white hover:bg-transparent transition-all"
+              >
                 {t('contact.send')}
                 <Send className="ml-2 group-hover:ltr:translate-x-1 group-hover:rtl:-translate-x-1 transition-transform" size={20} />
               </Button>
           </form>
+
+          <div className="flex flex-col gap-5">
+            <div className="p-8 border border-white/8 bg-white/[0.025] flex flex-col gap-[22px]">
+              <div className="flex items-start gap-4">
+                <MapPin size={20} className="text-primary mt-0.5 shrink-0" />
+                <span className="text-gray-400 text-[15px]">{t('contact.info.address')}</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Phone size={20} className="text-primary shrink-0" />
+                <span dir="ltr" className="text-gray-400 text-[15px]">{t('contact.info.phone')}</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Mail size={20} className="text-primary shrink-0" />
+                <span dir="ltr" className="text-gray-400 text-[15px]">{t('contact.info.email')}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

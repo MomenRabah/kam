@@ -2,46 +2,60 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "work": "Our Work",
     "about": "About Us",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "enquire": "Enquire"
   },
   "hero": {
     "beyondLimits": "BEYOND LIMITS",
     "toTheSpace": "TO NEW HORIZONS",
-    "cta": "Plan Your Event With Us"
+    "cta": "Plan Your Event With Us",
+    "yearsExcellence": "Years of Excellence"
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "Comprehensive event solutions tailored to your needs",
+    "subtitle": "Comprehensive event solutions, tailored to your vision",
     "description": "Everything you need to create unforgettable events and experiences",
+    "viewAllServices": "View All Services",
+    "pageHeading": "Comprehensive Event Solutions",
+    "pageSubtitle": "From first sketch to final teardown, our specialized teams handle every layer of your event.",
+    "ctaHeading": "Have a project in mind?",
+    "ctaButton": "Get In Touch",
     "boothExperts": {
       "title": "BOOTH EXPERTS, DESIGN & BUILD",
       "description": "Professional booth design and construction services that bring your brand vision to life with expert craftsmanship.",
+      "longDescription": "Our design and build team works from concept sketches through structural engineering to on-site construction, delivering custom exhibition booths that stand out on any show floor. We manage materials, fabrication, logistics, and installation end-to-end, so every panel, light, and finish reflects your brand with precision.",
       "features": ["Custom Booth Design", "3D Visualization", "Construction & Installation", "Brand Integration"]
     },
     "conferences": {
       "title": "CONFERENCES & EXHIBITIONS",
       "description": "Comprehensive conference and exhibition management services that deliver impactful and memorable experiences.",
+      "longDescription": "We plan and operate conferences and exhibitions of every scale — venue selection, floor planning, speaker logistics, registration, and on-site management — coordinating every vendor and moving part so the event runs seamlessly from doors-open to close.",
       "features": ["Event Planning", "Venue Management", "Technical Support", "Registration Services"]
     },
     "photography": {
       "title": "PHOTOGRAPHY",
       "description": "Capture every moment with our professional photography services, ensuring your events are documented beautifully.",
+      "longDescription": "Our photography team documents your event from setup to teardown, delivering polished coverage of key moments, guest interactions, and booth details — ready for marketing, recaps, and future proposals.",
       "features": ["Event Coverage", "Professional Editing", "High-Resolution Photos", "Same-Day Delivery"]
     },
     "catering": {
       "title": "CATERING SERVICES",
       "description": "Premium catering solutions that delight your guests with exceptional cuisine and impeccable service.",
+      "longDescription": "From formal plated dinners to interactive food stations, our catering partners design menus around your event's tone and audience, handling service staff, equipment, and logistics so hospitality never becomes a distraction.",
       "features": ["Custom Menus", "Professional Staff", "Dietary Options", "Premium Ingredients"]
     },
     "digitalEntertainment": {
       "title": "DIGITAL ENTERTAINMENT",
       "description": "Cutting-edge digital entertainment experiences that engage and captivate your audience.",
+      "longDescription": "We integrate interactive screens, projection mapping, live visuals, and digital activations into your event, giving attendees memorable moments to engage with and share.",
       "features": ["Interactive Displays", "Virtual Reality", "Live Streaming", "Digital Activations"]
     },
     "serviceSquad": {
       "title": "SERVICE SQUAD",
       "description": "Dedicated professional teams providing comprehensive event support and management excellence.",
+      "longDescription": "A dedicated on-ground crew — ushers, hosts, technicians, and coordinators — trained to represent your brand and keep every operational detail running smoothly throughout the event.",
       "features": ["Event Coordination", "On-Site Management", "Technical Support", "Guest Services"]
     }
   },
@@ -53,9 +67,14 @@
     "projects": {
       "number": "365",
       "label": "PROJECTS DELIVERED PROFESSIONALLY"
+    },
+    "timeline": {
+      "founded": "2008 · Founded",
+      "today": "2026 · Today"
     }
   },
   "clients": {
+    "sticker": "Built On Trust",
     "title": "Trusted partner to leading brands",
     "subtitle": "Together, we create impactful events that leave a clear mark and deliver real results"
   },
@@ -83,12 +102,17 @@
     }
   },
   "about": {
+    "heading": "About Us",
     "heroSubtitle": "Where visions are transformed into real experiences since 2008",
+    "ourStory": "Our Story",
     "whoWeAre": "Who We Are",
-    "paragraph1": "Established in 2008, Kasr Al-Amouyyeen (KAM) has grown into a leading company specializing in booth construction and full-scale event management.",
-    "paragraph2": "We deliver end-to-end solutions that transform ideas into immersive experiences—covering everything from concept development and planning to flawless execution. Whether it's exhibitions, conferences, or private events, we create environments that elevate brand presence and leave lasting impressions.",
-    "paragraph3": "Our team brings extensive expertise in designing and executing distinctive events that align with our clients' vision and objectives. We proudly serve public and private sectors, as well as individual clients, offering tailored solutions that ensure precision, quality, and impact.",
-    "paragraph4": "Driven by innovation and a commitment to excellence, we continuously push boundaries to deliver creative, high-quality results. We take pride in the trust of our partners and the satisfaction of our clients—striving to exceed expectations in every project we undertake.",
+    "storyLead": "Established in 2008, Kasr Al-Amouyyeen (KAM) has grown into a leading company specializing in booth construction and full-scale event management.",
+    "paragraph1": "We deliver end-to-end solutions that transform ideas into immersive experiences—covering everything from concept development and planning to flawless execution. Whether it's exhibitions, conferences, or private events, we create environments that elevate brand presence and leave lasting impressions.",
+    "paragraph2": "Our team brings extensive expertise in designing and executing distinctive events that align with our clients' vision and objectives. We proudly serve public and private sectors, as well as individual clients.",
+    "paragraph3": "Driven by innovation and a commitment to excellence, we continuously push boundaries to deliver creative, high-quality results—earning the trust of our partners project after project.",
+    "vmvHeading": "Our Vision, Mission & Values",
+    "vmvSubtitle": "What drives us, and what we stand for",
+    "ourValues": "Our Values",
     "vision": {
       "title": "Our Vision",
       "description": "To be the leading company in delivering innovative and integrated event solutions across the region."
@@ -128,7 +152,14 @@
     "rights": "All rights reserved"
   },
   "gallary": {
+    "sticker": "Where Ideas Become Reality",
     "title": "Our Work",
-    "description": "Explore our portfolio of successful events and projects"
+    "description": "Explore our portfolio of successful events and projects",
+    "viewMore": "View More"
+  },
+  "galleryPage": {
+    "sticker": "Full Portfolio",
+    "heading": "Our Work",
+    "subtitle": "Every booth, stage, and experience we've brought to life across Saudi Arabia and beyond"
   }
 }

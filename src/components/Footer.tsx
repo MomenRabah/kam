@@ -10,6 +10,7 @@ const Footer = () => {
   const quickLinks = [
     { path: '/', label: t('nav.home') },
     { path: '/services', label: t('nav.services') },
+    { path: '/gallery', label: t('nav.work') },
     { path: '/about', label: t('nav.about') },
     { path: '/contact', label: t('nav.contact') },
   ];

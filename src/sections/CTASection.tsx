@@ -24,7 +24,7 @@ const CTASection = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+    <section className="bg-black py-[170px] flex items-center justify-center relative overflow-hidden">
       {/* Centered glow effects */}
       <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Orange core */}
@@ -43,10 +43,10 @@ const CTASection = () => {
             {t('cta.subtitle')}
           </p>
           <a href="#contact" onClick={handleScrollToContact}>
-            <Button 
-              size="lg" 
-              variant="secondary" 
-              className="bg-primary px-8 py-6 text-lg transition-all text-white border-2 border-primary hover:bg-transparent hover:text-white group"
+            <Button
+              size="lg"
+              variant="secondary"
+              className="h-[52px] rounded-none bg-primary px-8 text-lg transition-all text-white border-2 border-primary hover:bg-transparent hover:text-white group"
             >
               {t('cta.button')}
               <ArrowRight 

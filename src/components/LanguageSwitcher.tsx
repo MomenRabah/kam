@@ -19,11 +19,11 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all text-white"
+      className="flex items-center gap-2 text-sm font-semibold text-white border border-white/25 px-5 py-2.5 bg-transparent transition-colors hover:border-accent hover:text-accent"
       aria-label="Toggle Language"
     >
       <Globe size={16} />
-      <span className="text-sm font-medium">{i18n.language === 'en' ? 'العربية' : 'English'}</span>
+      <span>{i18n.language === 'en' ? 'العربية' : 'English'}</span>
     </button>
   );
 };

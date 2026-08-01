@@ -5,13 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import LanguageSwitcher from './LanguageSwitcher';
 import KamLogo from '../assets/kam-logo.svg?react';
 
-import ideaGifWhite from '@/assets/gifs/idea-white.gif';
-import redCarpetGifWhite from '@/assets/gifs/red-carpet-white.gif';
-import videoCameraGifWhite from '@/assets/gifs/video-camera-white.gif';
-import engagementGifWhite from '@/assets/gifs/engagement-white.gif';
-import socialMediaGifWhite from '@/assets/gifs/social-media-white.gif';
-import audienceGifWhite from '@/assets/gifs/audience-white.gif';
-
 import ideaGifOrg from '@/assets/gifs/idea-org.gif';
 import redCarpetGifOrg from '@/assets/gifs/red-carpet-org.gif';
 import videoCameraGifOrg from '@/assets/gifs/video-camera-org.gif';
@@ -27,28 +20,19 @@ const Navbar = () => {
   const links = [
     { path: '/', label: t('nav.home') },
     { path: '/services', label: t('nav.services') },
+    { path: '/gallery', label: t('nav.work') },
     { path: '/about', label: t('nav.about') },
     { path: '/contact', label: t('nav.contact') },
   ];
 
-  const gifsWhite = [ideaGifWhite, redCarpetGifWhite, videoCameraGifWhite, engagementGifWhite, socialMediaGifWhite, audienceGifWhite];
   const gifsOrg = [ideaGifOrg, redCarpetGifOrg, videoCameraGifOrg, engagementGifOrg, socialMediaGifOrg, audienceGifOrg];
 
-  // Grid tiles: colors arranged arbitrarily with scattered gifs
-  const gridTiles = [
-    { color: 'bg-accent', gif: gifsWhite[2] },
-    { color: 'bg-primary', gif: gifsWhite[5] },
-    { color: 'bg-black', gif: gifsOrg[0] },
-    { color: 'bg-black', gif: gifsOrg[3] },
-    { color: 'bg-accent', gif: gifsWhite[1] },
-    { color: 'bg-primary', gif: gifsWhite[4] },
-    { color: 'bg-primary', gif: gifsWhite[0] },
-    { color: 'bg-black', gif: gifsOrg[2] },
-    { color: 'bg-accent', gif: gifsWhite[5] },
-    { color: 'bg-accent', gif: gifsWhite[3] },
-    { color: 'bg-primary', gif: gifsWhite[1] },
-    { color: 'bg-black', gif: gifsOrg[4] },
-  ];
+  // All tiles share the same dark background; hover alternates primary/accent
+  const hoverClasses = ['hover:bg-primary', 'hover:bg-accent'];
+  const gridTiles = Array.from({ length: 12 }, (_, i) => ({
+    gif: gifsOrg[i % gifsOrg.length],
+    hoverClass: hoverClasses[i % hoverClasses.length],
+  }));
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -78,7 +62,14 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <LanguageSwitcher />
           </div>
-          
+
+          <Link
+            to="/#contact"
+            className="hidden sm:inline-block text-sm font-semibold text-white border border-white/25 px-5 py-2.5 no-underline transition-colors hover:border-accent hover:text-accent"
+          >
+            {t('nav.enquire')}
+          </Link>
+
           {/* Burger Menu Button */}
           <button
             type="button"
@@ -122,14 +113,12 @@ const Navbar = () => {
                   {gridTiles.map((tile, index) => (
                     <div
                       key={index}
-                      className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-36 lg:h-36 flex items-center justify-center ${tile.color}`}
+                      className={`w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 flex items-center justify-center bg-[#0a0a0a] transition-colors duration-300 ${tile.hoverClass}`}
                     >
                       <img
                         src={tile.gif}
                         alt=""
-                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-18 lg:h-18 object-contain ${
-                          tile.color === 'bg-accent' ? 'invert' : ''
-                        }`}
+                        className="w-10 h-10 sm:w-12 sm:h-12 lg:w-18 lg:h-18 object-contain opacity-80"
                       />
                     </div>
                   ))}
@@ -149,7 +138,7 @@ const Navbar = () => {
                     >
                       <span
                         className={`
-                          text-3xl sm:text-2xl lg:text-6xl font-bold tracking-tight
+                          text-3xl sm:text-2xl lg:text-5xl font-bold tracking-tight
                           ${isActive(link.path) 
                             ? 'text-primary' 
                             : 'text-white'

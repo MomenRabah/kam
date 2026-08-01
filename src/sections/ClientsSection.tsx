@@ -17,8 +17,7 @@ import logo11 from '../assets/clients/01-11.svg';
 import logo12 from '../assets/clients/01-12.svg';
 
 const ClientsSection = () => {
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+  const { t } = useTranslation();
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -56,23 +55,23 @@ const ClientsSection = () => {
   const duplicatedRow2 = [...row2Clients, ...row2Clients];
 
   return (
-    <section className="min-h-screen bg-black flex flex-col justify-center py-12 overflow-hidden relative">
+    <section id="clients" className="bg-black py-[110px] overflow-hidden relative">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/3 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 mb-14">
         <div ref={headerRef} className="text-center" style={{ opacity: 0, transform: 'translateY(20px)' }}>
-                      {/* Sticker Tag */}
-            <div className="absolute ltr:-top-5 ltr:-left-4 rtl:-top-5 rtl:-right-4 ltr:-rotate-10 rtl:rotate-10 bg-accent px-2 py-1 shadow-lg z-10">
-              <p className="text-black text-xs leading-tight text-center whitespace-nowrap">
-                {isRTL ? 'ثقة نفخر بها' : 'Built On Trust'}
-              </p>
-            </div>
-            
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          {/* Sticker Tag */}
+          <div className="inline-block bg-accent px-3 py-1.5 mb-4 shadow-lg">
+            <p className="text-black text-xs font-semibold leading-tight">
+              {t('clients.sticker')}
+            </p>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             {t('clients.title')}
           </h2>
-          <p className="text-lg text-primary max-w-2xl mx-auto">
+          <p className="text-base text-primary max-w-xl mx-auto">
             {t('clients.subtitle')}
           </p>
         </div>
